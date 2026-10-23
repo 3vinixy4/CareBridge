@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareBridge Africa - Safe Caregiver Jobs</title>
+    <!-- Adding FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0f4c75;
+            --secondary-blue: #3282b8;
+            --safe-green: #2ecc71;
+            --premium-gold: #f1c40f;
+            --dark: #1b262c;
+            --light: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        /* Top Contact Bar */
+        .top-bar {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 14px;
+        }
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        .top-bar i {
+            margin-right: 5px;
+        }
+        .social-icons a {
+            font-size: 16px;
+        }
+        /* Header */
+        header {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            color: var(--primary-blue);
+        }
+        header p {
+            margin: 5px 0 0 0;
+            color: #666;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 25px auto;
+            line-height: 1.5;
+        }
+        /* How It Works */
+        .how-it-works {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .step-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 250px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .step-card i {
+            font-size: 2rem;
+            color: var(--secondary-blue);
+            margin-bottom: 10px;
+        }
+        /* Premium Coins Section */
+        .premium-section {
+            background-color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 4px solid var(--premium-gold);
+            border-bottom: 4px solid var(--premium-gold);
+        }
+        .premium-box {
+            background: #fffdf2;
+            border: 2px solid var(--premium-gold);
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.2);
+        }
+        .premium-box i.fa-coins {
+            font-size: 3rem;
+            color: var(--premium-gold);
+            margin-bottom: 15px;
+        }
+        .premium-box h3 {
+            color: var(--dark);
+            font-size: 1.8rem;
+            margin-top: 0;
+        }
+        .mpesa-instructions {
+            background-color: var(--safe-green);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .mpesa-instructions ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .input-group {
+            margin-top: 20px;
+        }
+        .input-group input {
+            padding: 12px;
+            width: 70%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+        .btn-claim {
+            padding: 12px 25px;
+            background-color: var(--premium-gold);
+            color: var(--dark);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        .btn-claim:hover {
+            background-color: #d4ac0d;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
+            font-weight: bold;
+        }
+        .success-message {
+            color: var(--safe-green);
+            margin-top: 10px;
+            display: none;
+            font-weight: bold;
+        }
+        /* Jobs Section */
+        .jobs {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .job-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .job-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            text-align: left;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--safe-green);
+        }
+        .badge {
+            background-color: var(--safe-green);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        footer a {
+            color: var(--secondary-blue);
+            text-decoration: none;
+        }
+        .footer-socials {
+            margin-top: 15px;
+        }
+        .footer-socials a {
+            color: white;
+            font-size: 20px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Contact Bar -->
+    <div class="top-bar">
+        <div>
+            <a href="mailto:supportcaregiver298@gmail.com"><i class="fas fa-envelope"></i> supportcaregiver298@gmail.com</a>
+            <a href="https://wa.me/254706016727" target="_blank"><i class="fab fa-whatsapp" style="color: #25D366; font-size: 16px;"></i> +254 706 016 727</a>
+        </div>
+        <div class="social-icons">
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+
+    <header>
+        <h1>CareBridge Africa</h1>
+        <p>Safe, Verified Caregiver Jobs in the Middle East</p>
+    </header>
+
+    <section class="hero">
+        <h2>Your Bridge to a Better Future</h2>
+        <p>We connect dedicated African professionals with verified, high-paying caregiver opportunities in Saudi Arabia, Qatar, and across the Middle East. Safety, trust, and transparency guaranteed.</p>
+    </section>
+
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step-card">
+                <i class="fas fa-user-plus"></i>
+                <h3>1. Register</h3>
+                <p>Unlock premium access to securely apply for verified roles.</p>
+            </div>
+            <div class="step-card">
+                <i class="fas fa-search"></i>
+                <h3>2. Find Your Job</h3>
+                <p>Browse caregiver jobs with free accommodation and safe contracts.</p>
+            </div>
+            <div class="step-card">
+                <i class="fas fa-plane-departure"></i>
+                <h3>3. Travel Safely</h3>
+                <p>Get connected directly. We guide you through the process.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Coins Section -->
+    <section class="premium-section" id="premium">
+        <div class="premium-box">
+            <i class="fas fa-coins"></i>
+            <h3>Unlock Premium Access</h3>
+            <p>To ensure platform safety and verify all applicants, accessing premium jobs requires <strong>Premium Coins</strong> (Value: $15 USD / KES Equivalent).</p>
+            
+            <div class="mpesa-instructions">
+                <strong><i class="fas fa-mobile-alt"></i> How to Pay via M-Pesa:</strong>
+                <ol>
+                    <li>Go to your M-Pesa Menu or App.</li>
+                    <li>Select <strong>Send Money</strong>.</li>
+                    <li>Enter number: <strong>+254 706 016 727</strong></li>
+                    <li>Enter the KES equivalent of <strong>$15</strong>.</li>
+                    <li>Complete the transaction to receive your M-Pesa Code.</li>
+                </ol>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="transactionCode" placeholder="Enter M-Pesa Transaction Code" />
+                <button class="btn-claim" onclick="claimCoins()">Claim Premium Coins</button>
+                <div id="errorMsg" class="error-message">Please enter a valid M-Pesa transaction code.</div>
+                <div id="successMsg" class="success-message">Verifying... Redirecting to WhatsApp!</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="jobs">
+        <h2>Featured Verified Jobs</h2>
+        <div class="job-list">
+            <div class="job-card">
+                <h3>Caregiver - Elderly Care <span class="badge"><i class="fas fa-check-circle"></i> Verified</span></h3>
+                <p><i class="fas fa-map-marker-alt"></i> Riyadh, Saudi Arabia</p>
+                <p><i class="fas fa-money-bill-wave"></i> Competitive Salary + Overtime</p>
+                <p><i class="fas fa-home"></i> Free Accommodation provided</p>
+            </div>
+            <div class="job-card">
+                <h3>Home Nurse Assistant <span class="badge"><i class="fas fa-check-circle"></i> Verified</span></h3>
+                <p><i class="fas fa-map-marker-alt"></i> Doha, Qatar</p>
+                <p><i class="fas fa-money-bill-wave"></i> Tax-free Salary</p>
+                <p><i class="fas fa-shield-alt"></i> Medical Insurance & Flights</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 CareBridge Africa. Empowering communities.</p>
+        <p>Need help? <a href="mailto:supportcaregiver298@gmail.com">supportcaregiver298@gmail.com</a> | <a href="https://wa.me/254706016727" target="_blank">+254 706 016 727</a></p>
+        <div class="footer-socials">
+            <!-- These are placeholder links. You can replace the "#" with your real Facebook/Instagram page links once they are ready! -->
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        function claimCoins() {
+            var code = document.getElementById("transactionCode").value.trim();
+            var errorMsg = document.getElementById("errorMsg");
+            var successMsg = document.getElementById("successMsg");
+
+            if (code === "") {
+                errorMsg.style.display = "block";
+                successMsg.style.display = "none";
+            } else {
+                errorMsg.style.display = "none";
+                successMsg.style.display = "block";
+                
+                // Create the WhatsApp message
+                var message = "Hello, I have purchased CareBridge Premium Coins. My M-Pesa Transaction Code is: " + code + ". Please activate my premium package.";
+                var whatsappUrl = "https://wa.me/254706016727?text=" + encodeURIComponent(message);
+                
+                // Redirect to WhatsApp after 1.5 seconds so user sees the success message
+                setTimeout(function() {
+                    window.open(whatsappUrl, '_blank');
+                }, 1500);
+            }
+        }
+    </script>
+</body>
+</html>
